@@ -1,13 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './sidebar.css';
-import {EmailList} from './email-list.js';
 
 export function Sidebar(props) {
-    const folders = props.folderList.map(folder =>
+  const folders = props.folderList.map(folder =>
         <li key={folder.id} className="folder-menu-list-item">
-          <Link to={`${folder.id}`}>
+          <Link to={`/${folder.id}`}>
             {folder.name}>
           </Link>
         </li>
@@ -25,7 +24,7 @@ export function Sidebar(props) {
 }
 
 const mapStateToProps = state => ({
-    folderList: Object.keys(state).map(folderId => state[folderId])
+  folderList: Object.keys(state).map(folderId => state[folderId])
 });
 
 export default connect(mapStateToProps)(Sidebar);
