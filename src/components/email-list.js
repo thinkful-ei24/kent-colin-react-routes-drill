@@ -4,7 +4,7 @@ import './email-list.css';
 
 export function EmailList(props) {
     const emails = props.emailList.map(email =>
-        <li className="email-list-email">
+        <li key={email.id} className="email-list-email">
             <div className="email-list-email-from">
                 {email.from}
             </div>
@@ -25,7 +25,9 @@ export function EmailList(props) {
 }
 
 const mapStateToProps = (state, props) => {
-    const folder = state[props.folderId];
+    console.log(state);
+    console.log(props)
+    const folder = state[props.match.params.folderId];
     return {
         folderName: folder.name,
         emailList: Object.keys(folder.emails).map(emailId =>
